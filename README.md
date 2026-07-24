@@ -10,6 +10,8 @@ Essential libraries
 * scikit-learn
 * torch
 * tabulate
+* tqdm
+* matplotlib
 
 
 ## Quick Start
@@ -26,19 +28,19 @@ pip install dist/decbin-0.0.1-py3-none-any.whl
 pip install numpy==1.24
 ```
    
-3. Data Preparation
+2. Data Preparation
    
 Place the Fastq/Fasta sequencing file to be analyzed into the data/ directory (example: data/SRR13128012.fastq).
 
 Three PacBio HiFi human intestinal datasets, SRR13128012-SRR13128014, were obtained from the National Center for Bio technology Information (NCBI) (https://www.ncbi.nlm.nih.gov) under BioProject number PRJNA680590. NWC2 reads were obtained from the NCBI BioSample SAMN09580370 under the SRA accession codes SRX4451758 (Nanopore) and SRX4451757 (PacBio).
 
-4. VAE Pretraining
+3. VAE Pretraining
 
 ```
 decbin-pretrain -r data/SRR13128012.fastq -o data/SRR13128012 -k 4 -t 32
 ```
 ```
-usage: decbin-pretrain [-h] --reads-path READS_PATH [--k-size {3,4,5}] [--bin-size BIN_SIZE] [--bin-count BIN_COUNT] [--ae-epochs AE_EPOCHS] [--ae-dims AE_DIMS] [--ae-hidden AE_HIDDEN] [--threads THREADS] [--cuda] --output <DEST>
+usage: decbin-pretrain [-h] --reads-path READS_PATH [--k-size {3,4,5}] [--ae-epochs AE_EPOCHS] [--ae-dims AE_DIMS] [--ae-hidden AE_HIDDEN] [--threads THREADS] [--cuda] --output <DEST>
 
 optional arguments:
   -h, --help            show this help message and exit
@@ -46,10 +48,6 @@ optional arguments:
                         Reads path for binning
   --k-size {3,4,5}, -k {3,4,5}
                         k value for k-mer frequency vector. Choose between 3 and 5.
-  --bin-size BIN_SIZE, -bs BIN_SIZE
-                        Bin size for the coverage histogram.
-  --bin-count BIN_COUNT, -bc BIN_COUNT
-                        Number of bins for the coverage histogram.
   --ae-epochs AE_EPOCHS
                         Epochs for the auto_encoder.
   --ae-dims AE_DIMS     Size of the latent dimension.
@@ -61,7 +59,7 @@ optional arguments:
   --output <DEST>, -o <DEST>
                         Output directory
 ```
-5. DecBin Training
+4. DecBin Training
 ```
 decbin-run -r data/SRR13128012.fastq -o data/SRR13128012 -e 100
 ```
@@ -71,11 +69,19 @@ usage: decbin-run [-h] --read-path READ_PATH --output OUTPUT [--latent-dims LATE
 optional arguments:
   -h, --help            show this help message and exit
   --read-path READ_PATH, -r READ_PATH
+                        Reads path for binning
   --output OUTPUT, -o OUTPUT
+                        Output directory
   --latent-dims LATENT_DIMS, -ld LATENT_DIMS
+                        Size of the latent dimension
   --hidden-layers HIDDEN_LAYERS, -hl HIDDEN_LAYERS
+                        Hidden layer sizes default: 128,128
   --epochs EPOCHS, -e EPOCHS
+                        Epochs for training
   --batch-size BATCH_SIZE, -bs BATCH_SIZE
+                        Batch size for training
   --device DEVICE, -d DEVICE
+                        Whether to use CUDA if available
   --nsp NSP, -n NSP
+                        Estimated number of species, default: None
 ```
