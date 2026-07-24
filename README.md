@@ -16,9 +16,10 @@ Essential libraries
 
 ## Quick Start
 1. Installation
-You can install DecBin from pip. After installing Anaconda (or miniconda), first, obtain DecBin:  
-git clone [https://github.com/DecBin.git](https://github.com/LorMeBioAI/DecBin.git)
-Then create an environment to run DecBin.  
+
+   You can install DecBin from pip. After installing Anaconda (or miniconda), first, obtain DecBin:  
+   git clone [https://github.com/DecBin.git](https://github.com/LorMeBioAI/DecBin.git)
+   Then create an environment to run DecBin.  
 ```
 cd path_to_DecBin
 conda create -n decbin python=3.9
@@ -29,12 +30,11 @@ pip install numpy==1.24
 ```
    
 2. Data Preparation
-   
-Place the Fastq/Fasta sequencing file to be analyzed into the data/ directory (example: data/SRR13128012.fastq).
 
-Three PacBio HiFi human intestinal datasets, SRR13128012-SRR13128014, were obtained from the National Center for Bio technology Information (NCBI) (https://www.ncbi.nlm.nih.gov) under BioProject number PRJNA680590. NWC2 reads were obtained from the NCBI BioSample SAMN09580370 under the SRA accession codes SRX4451758 (Nanopore) and SRX4451757 (PacBio).
+   Place the Fastq/Fasta sequencing file to be analyzed into the data/ directory (example: data/SRR13128012.fastq).
+   Three PacBio HiFi human intestinal datasets, SRR13128012-SRR13128014, were obtained from the National Center for Bio technology Information ([NCBI](https://www.ncbi.nlm.nih.gov)) under BioProject number PRJNA680590. NWC2 reads were obtained from the NCBI BioSample SAMN09580370 under the SRA accession codes SRX4451758 (Nanopore) and SRX4451757 (PacBio).
 
-3. VAE Pretraining
+4. VAE Pretraining
 
 ```
 decbin-pretrain -r data/SRR13128012.fastq -o data/SRR13128012 -k 4 -t 32
