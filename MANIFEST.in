@@ -1,0 +1,2 @@
+recursive-include decbin/mbcclr_utils/bin *
+recursive-include decbin/vae_dec *.json
