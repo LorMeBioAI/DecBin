@@ -18,7 +18,7 @@ Essential libraries
 1. Installation
 
    You can install DecBin from pip. After installing Anaconda (or miniconda), first, obtain DecBin:  
-   git clone [https://github.com/DecBin.git](https://github.com/LorMeBioAI/DecBin.git)
+   git clone [https://github.com/LorMeBioAI/DecBin.git](https://github.com/LorMeBioAI/DecBin.git)
    Then create an environment to run DecBin.  
 ```
 cd path_to_DecBin
